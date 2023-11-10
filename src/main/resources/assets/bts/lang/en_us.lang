@@ -1,0 +1,24 @@
+status.bts.hud_config_saved=HUD-configuration saved!
+
+tooltip.bts.no_info_available=No information available.
+tooltip.bts.hud_config.reset=This will reset everything to their default values.
+tooltip.bts.hud_config.move_up=Move the HUD up by one pixel. Move the HUD up by 10 pixels while holding down SHIFT.
+tooltip.bts.hud_config.move_down=Move the HUD down by one pixel. Move the HUD down by 10 pixels while holding down SHIFT.
+tooltip.bts.hud_config.move_left=Move the HUD left by one pixel. Move the HUD left by 10 pixels while holding down SHIFT.
+tooltip.bts.hud_config.move_right=Move the HUD right by one pixel. Move the HUD right by 10 pixels while holding down SHIFT.
+tooltip.bts.hud_config.scale_up=Increase the scale of the HUD by .025. Increase the scale of the HUD by 0.25 while holding down SHIFT.
+tooltip.bts.hud_config.scale_down=Decrease the scale of the HUD by .025. Decrease the scale of the HUD by 0.25 while holding down SHIFT.
+
+label.bts.hud_config.ctrl_info_1=Hold down CTRL on a button
+label.bts.hud_config.ctrl_info_2=to show more information.
+
+command.bts.error=Could not dispatch command: %s
+
+key.bts.category=Beyond The Seas
+key.bts.quick_menu=Quick Menu
+key.bts.armament_haki_activation=Armament Haki Activation
+key.bts.observation_haki_activation=Observation Haki Activation
+key.bts.dash=Dash
+key.bts.taunt=Taunt
+
+key.bts.hud_config=Edit HUD

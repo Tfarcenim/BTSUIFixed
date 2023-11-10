@@ -1,0 +1,19 @@
+status.bts.hud_config_saved=HUD-Konfiguration gespeichert!
+
+tooltip.bts.no_info_available=Keine Information verfügbar.
+tooltip.bts.hud_config.reset=Setze alle Werte auf ihren Standardwert zurück.
+tooltip.bts.hud_config.move_up=Bewege den HUD einen Pixel nach oben. Bewege den HUD 10 Pixel nach oben während du SHIFT gedrückt hältst.
+tooltip.bts.hud_config.move_down=Bewege den HUD einen Pixel nach unten. Bewege den HUD 10 Pixel nach unten während du SHIFT gedrückt hältst.
+tooltip.bts.hud_config.move_left=Bewege den HUD einen Pixel nach links. Bewege den HUD 10 Pixel nach links während du SHIFT gedrückt hältst.
+tooltip.bts.hud_config.move_right=Bewege den HUD einen Pixel nach rechts. Bewege den HUD 10 Pixel nach rechts während du SHIFT gedrückt hältst.
+tooltip.bts.hud_config.scale_up=Vergrößere die HUD-Skalierung um .025. Vergrößere die HUD-Skalierung um 0.25 während du SHIFT gedrückt hältst.
+tooltip.bts.hud_config.scale_down=Verkleinere die HUD-Skalierung um .025. Verkleinere die HUD-Skalierung um 0.25 während du SHIFT gedrückt hältst.
+
+label.bts.hud_config.ctrl_info_1=Halte die STRG Taste um
+label.bts.hud_config.ctrl_info_2=mehr Infos anzuzeigen.
+
+command.bts.error=Befehl konnte nicht ausgeführt werden: %s
+
+key.bts.category=Beyond The Seas
+key.bts.quick_menu=Quick Menü
+key.bts.hud_config=HUD Bearbeiten
