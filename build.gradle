@@ -57,6 +57,11 @@ minecraft {
 
 repositories {
     maven { url = 'https://repo.spongepowered.org/maven' }
+
+    mavenCentral()
+    google()
+    maven { url = 'https://maven.covers1624.net' }
+    maven { url = 'https://cursemaven.com' }
 }
 
 configurations {
@@ -69,13 +74,17 @@ dependencies {
 
     implementation group: 'org.jetbrains', name: 'annotations', version: annotations_version
 
+    implementation group: 'io.karma.kommons', name: 'kommons', version: kommons_version
+    implementation group: 'io.karma.sliced', name: 'sliced', version: sliced_version
 
-    implementation('org.spongepowered:mixin:0.8.3-SNAPSHOT') {
+    implementation group: 'org.joml', name: 'joml' , version: joml_version
+
+    implementation('org.spongepowered:mixin:0.8.5-SNAPSHOT') {
         exclude module: 'guava'
         exclude module: 'commons-io'
         exclude module: 'gson'
     }
-    annotationProcessor 'org.spongepowered:mixin:0.8.3:processor'
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
 processResources {

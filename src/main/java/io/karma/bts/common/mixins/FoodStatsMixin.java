@@ -20,7 +20,7 @@ public final class FoodStatsMixin {
      *         of the player to work without hunger entirely.
      * @author KitsuneAlex
      */
-    @Overwrite
+    @Overwrite(remap = MixinConfigPlugin.REMAP)
     public void onUpdate(final @NotNull EntityPlayer player) {
         if (!player.isCreative() && player.getHealth() < player.getMaxHealth()) {
             if (foodTimer < CommonConfig.healTime) {

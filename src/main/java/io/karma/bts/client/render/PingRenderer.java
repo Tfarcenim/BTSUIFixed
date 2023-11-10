@@ -4,7 +4,6 @@ import io.karma.bts.client.ClientConfig;
 import io.karma.bts.client.ClientEventHandler;
 import io.karma.bts.client.shader.*;
 import io.karma.bts.common.BTSConstants;
-import io.karma.bts.common.util.BlockPosUtils;
 import io.karma.bts.common.util.PingColor;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import net.minecraft.client.Minecraft;
@@ -26,10 +25,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.opengl.GL11;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Consumer;
 
 public final class PingRenderer {
@@ -51,7 +47,7 @@ public final class PingRenderer {
         buffer.set1f(U_TIME, ClientEventHandler.INSTANCE.getRenderTime());
     };
 
-    private final Long2ObjectOpenHashMap<EnumSet<PingColor>> pings = new Long2ObjectOpenHashMap<>();
+    private final HashMap<BlockPos,EnumSet<PingColor>> pings = new HashMap<>();
     private final ArrayList<OrderedPing> sortedPings = new ArrayList<>();
 
     // @formatter:off
@@ -73,7 +69,7 @@ public final class PingRenderer {
         sortedPings.clear();
     }
 
-    public void addPing(final long pos, final @Nullable EnumSet<PingColor> colors) {
+    public void addPing(final BlockPos pos, final @Nullable EnumSet<PingColor> colors) {
         if (colors == null) {
             return;
         }
@@ -88,7 +84,7 @@ public final class PingRenderer {
         colorSet.addAll(colors);
     }
 
-    public void removePing(final long pos, final @Nullable EnumSet<PingColor> colors) {
+    public void removePing(final BlockPos pos, final @Nullable EnumSet<PingColor> colors) {
         if (colors == null || !pings.containsKey(pos)) {
             return;
         }
@@ -106,12 +102,12 @@ public final class PingRenderer {
         final float py = (float) player.posY + 0.5F;
         final float pz = (float) player.posZ + 0.5F;
 
-        final Set<Long2ObjectOpenHashMap.Entry<EnumSet<PingColor>>> entries = pings.long2ObjectEntrySet();
+        final Set<HashMap.Entry<BlockPos,EnumSet<PingColor>>> entries = pings.entrySet();
         MutableBlockPos pos = new MutableBlockPos(0, 0, 0);
 
-        for (final Long2ObjectOpenHashMap.Entry<EnumSet<PingColor>> ping : entries) {
-            final long serializedPos = ping.getLongKey();
-            BlockPosUtils.setFromLong(pos, serializedPos);
+        for (final Map.Entry<BlockPos, EnumSet<PingColor>> ping : entries) {
+            final BlockPos serializedPos = ping.getKey();
+            pos.setPos(serializedPos);
 
             final float bx = (float) pos.getX() + 0.5F;
             final float by = (float) pos.getY() + 0.5F;
@@ -148,7 +144,7 @@ public final class PingRenderer {
         MutableBlockPos pos = new MutableBlockPos(0, 0, 0);
 
         for (final OrderedPing ping : sortedPings) {
-            BlockPosUtils.setFromLong(pos, ping.pos);
+            pos.setPos(ping.pos);
             renderPing(player, pos, ping, partialTicks);
         }
     }
@@ -294,11 +290,11 @@ public final class PingRenderer {
     }
 
     public static class OrderedPing implements Comparable<OrderedPing> {
-        public final long pos;
+        public final BlockPos pos;
         public final PingColor[] colors;
         public final float distance;
 
-        OrderedPing(final long pos, final @NotNull PingColor[] colors, final float distance) {
+        OrderedPing(final BlockPos pos, final @NotNull PingColor[] colors, final float distance) {
             this.pos = pos;
             this.colors = colors;
             this.distance = distance;

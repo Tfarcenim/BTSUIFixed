@@ -1,0 +1,21 @@
+{
+  "package": "io.karma.bts.common.mixins",
+  "required": true,
+  "refmap": "mixins.bts.refmap.json",
+  "plugin": "io.karma.bts.common.mixins.MixinConfigPlugin",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.7",
+  "compatibilityLevel": "JAVA_8",
+  "injectors": {
+    "maxShiftBy": 100
+  },
+  "mixins": [
+    "DirectoryDiscovererMixin",
+    "EntityPlayerMixin",
+    "FoodStatsMixin",
+    "JarDiscovererMixin"
+  ],
+  "client": [
+    "GuiIngameMenuMixin"
+  ]
+}

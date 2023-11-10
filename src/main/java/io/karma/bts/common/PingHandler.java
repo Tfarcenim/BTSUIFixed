@@ -1,6 +1,5 @@
 package io.karma.bts.common;
 
-import io.karma.bts.common.util.BlockPosUtils;
 import io.karma.bts.common.util.PingColor;
 import io.karma.bts.server.network.PacketAddPing;
 import io.karma.bts.server.network.PacketClearPings;
@@ -29,7 +28,7 @@ import java.util.stream.Collectors;
 public final class PingHandler {
     public static final PingHandler INSTANCE = new PingHandler();
 
-    private final Int2ObjectOpenHashMap<Long2ObjectOpenHashMap<EnumSet<PingColor>>> pings = new Int2ObjectOpenHashMap<>();
+    private final Int2ObjectOpenHashMap<HashMap<BlockPos,EnumSet<PingColor>>> pings = new Int2ObjectOpenHashMap<>();
 
     // @formatter:off
     private PingHandler() {}
@@ -113,19 +112,18 @@ public final class PingHandler {
         }
 
         final int dimensionId = world.provider.getDimension();
-        Long2ObjectOpenHashMap<EnumSet<PingColor>> pings = this.pings.get(dimensionId);
+        HashMap<BlockPos, EnumSet<PingColor>> pings = this.pings.get(dimensionId);
 
         if (pings == null) {
-            pings = new Long2ObjectOpenHashMap<>();
+            pings = new HashMap<>();
             this.pings.put(dimensionId, pings);
         }
 
-        final long serializedPos = pos.toLong();
-        EnumSet<PingColor> colorSet = pings.get(serializedPos);
+        EnumSet<PingColor> colorSet = pings.get(pos);
 
         if (colorSet == null) {
             colorSet = EnumSet.copyOf(colors);
-            pings.put(serializedPos, colorSet);
+            pings.put(pos, colorSet);
         }
         else {
             colorSet.addAll(colors);
@@ -150,14 +148,13 @@ public final class PingHandler {
         }
 
         final int dimensionId = world.provider.getDimension();
-        final Long2ObjectOpenHashMap<EnumSet<PingColor>> pings = this.pings.get(dimensionId);
+        final HashMap<BlockPos, EnumSet<PingColor>> pings = this.pings.get(dimensionId);
 
         if (pings == null) {
             return;
         }
 
-        final long serializedPos = pos.toLong();
-        EnumSet<PingColor> colorSet = pings.get(serializedPos);
+        EnumSet<PingColor> colorSet = pings.get(pos);
 
         if (colorSet == null) {
             return;
@@ -180,7 +177,7 @@ public final class PingHandler {
         }
 
         final int dimensionId = world.provider.getDimension();
-        final Long2ObjectOpenHashMap<EnumSet<PingColor>> pings = this.pings.get(dimensionId);
+        final HashMap<BlockPos, EnumSet<PingColor>> pings = this.pings.get(dimensionId);
 
         if (pings == null) {
             return;
@@ -189,11 +186,11 @@ public final class PingHandler {
         final UUID uuid = entity.getPersistentID();
         sendClearPingsPacket(world, uuid);
 
-        final Set<Long2ObjectOpenHashMap.Entry<EnumSet<PingColor>>> entries = pings.long2ObjectEntrySet();
+        final Set<Map.Entry<BlockPos, EnumSet<PingColor>>> entries = pings.entrySet();
         MutableBlockPos pos = new MutableBlockPos(0, 0, 0);
 
-        for (final Long2ObjectOpenHashMap.Entry<EnumSet<PingColor>> ping : entries) {
-            BlockPosUtils.setFromLong(pos, ping.getLongKey());
+        for (final Map.Entry<BlockPos, EnumSet<PingColor>> ping : entries) {
+            pos.setPos(ping.getKey());
             sendAddPingPacket(world, pos, ping.getValue(), uuid);
         }
     }
@@ -207,10 +204,10 @@ public final class PingHandler {
         }
 
         final int dimensionId = world.provider.getDimension();
-        Long2ObjectOpenHashMap<EnumSet<PingColor>> pings = this.pings.get(dimensionId);
+        HashMap<BlockPos, EnumSet<PingColor>> pings = this.pings.get(dimensionId);
 
         if (pings == null) {
-            pings = new Long2ObjectOpenHashMap<>();
+            pings = new HashMap<>();
             this.pings.put(dimensionId, pings);
         }
 
@@ -225,8 +222,10 @@ public final class PingHandler {
 
             for (int i = 0; i < numPings; i++) {
                 final NBTTagCompound pingTag = pingTags.getCompoundTagAt(i);
-                final long serializedPos = pingTag.getLong("pos");
-                BlockPosUtils.setFromLong(pos, serializedPos);
+
+                final BlockPos serializedPos = new BlockPos(pingTag.getInteger("posX"),pingTag.getInteger("posY"),pingTag.getInteger("posZ"));
+
+                pos.setPos(serializedPos);
 
                 // @formatter:off
                 final List<PingColor> colors = Arrays.stream(pingTag.getIntArray("colors"))
@@ -250,7 +249,7 @@ public final class PingHandler {
         }
 
         final int dimensionId = world.provider.getDimension();
-        Long2ObjectOpenHashMap<EnumSet<PingColor>> pings = this.pings.get(dimensionId);
+        HashMap<BlockPos, EnumSet<PingColor>> pings = this.pings.get(dimensionId);
 
         if (pings == null) {
             return;
@@ -259,13 +258,13 @@ public final class PingHandler {
         final NBTTagCompound tag = event.getData();
         final NBTTagList pingTags = new NBTTagList();
 
-        final Set<Long2ObjectOpenHashMap.Entry<EnumSet<PingColor>>> entries = pings.long2ObjectEntrySet();
+        final Set<Map.Entry<BlockPos, EnumSet<PingColor>>> entries = pings.entrySet();
 
         MutableBlockPos pos = new MutableBlockPos(0, 0, 0);
 
-        for (final Long2ObjectOpenHashMap.Entry<EnumSet<PingColor>> ping : entries) {
-            final long serializedPos = ping.getLongKey();
-            BlockPosUtils.setFromLong(pos, serializedPos);
+        for (final Map.Entry<BlockPos, EnumSet<PingColor>> ping : entries) {
+            final BlockPos serializedPos = ping.getKey();
+            pos.setPos(serializedPos);
 
             final Chunk currentChunk = world.getChunk(pos);
 
@@ -274,7 +273,9 @@ public final class PingHandler {
             }
 
             final NBTTagCompound pingTag = new NBTTagCompound();
-            pingTag.setLong("pos", serializedPos);
+            pingTag.setInteger("posX", serializedPos.getX());
+            pingTag.setInteger("posY", serializedPos.getY());
+            pingTag.setInteger("posZ", serializedPos.getZ());
 
             // @formatter:off
             pingTag.setIntArray("colors", ping.getValue()

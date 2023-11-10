@@ -6,6 +6,7 @@ import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -18,6 +19,8 @@ public final class MixinConfigPlugin implements IMixinConfigPlugin {
     public void onLoad(final @NotNull String mixinPackage) {
 
     }
+
+    public static final boolean REMAP = false;
 
     @Override
     public String getRefMapperConfig() {
@@ -43,7 +46,7 @@ public final class MixinConfigPlugin implements IMixinConfigPlugin {
 
     @Override
     public @NotNull List<String> getMixins() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override

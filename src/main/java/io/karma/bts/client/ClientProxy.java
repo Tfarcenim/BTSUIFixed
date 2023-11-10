@@ -44,13 +44,13 @@ public final class ClientProxy extends CommonProxy {
     @Override
     public void addPingToRenderer(@NotNull BlockPos pos, @NotNull EnumSet<PingColor> colors) {
         super.addPingToRenderer(pos, colors);
-        pingRenderer.addPing(pos.toLong(), colors);
+        pingRenderer.addPing(pos, colors);
     }
 
     @Override
     public void removePingFromRenderer(@NotNull BlockPos pos, @NotNull EnumSet<PingColor> colors) {
         super.removePingFromRenderer(pos, colors);
-        pingRenderer.removePing(pos.toLong(), colors);
+        pingRenderer.removePing(pos, colors);
     }
 
     @Override

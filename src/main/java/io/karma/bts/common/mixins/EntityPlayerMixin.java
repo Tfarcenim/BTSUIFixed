@@ -1,5 +1,6 @@
 package io.karma.bts.common.mixins;
 
+import io.karma.bts.common.BTSLoadingPlugin;
 import io.karma.bts.common.hooks.BTSPlayer;
 import io.karma.bts.common.util.PingColor;
 import io.karma.bts.common.util.PingColorSerializer;
@@ -26,7 +27,7 @@ public abstract class EntityPlayerMixin extends EntityLivingBase implements BTSP
         super(world);
     }
 
-    @Inject(method = "entityInit", at = @At("TAIL"))
+    @Inject(method = "entityInit", at = @At("TAIL"),remap = MixinConfigPlugin.REMAP)
     private void onEntityInit(final @NotNull CallbackInfo cbi) {
         dataManager.register(ASSIGNED_COLORS, EnumSet.noneOf(PingColor.class));
     }

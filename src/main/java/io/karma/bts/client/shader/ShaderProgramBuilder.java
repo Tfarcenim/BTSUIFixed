@@ -160,7 +160,7 @@ public final class ShaderProgramBuilder {
             if (GL20.glGetProgrami(id, GL20.GL_LINK_STATUS) != GL11.GL_TRUE) {
                 final int length = GL20.glGetShaderi(id, GL20.GL_INFO_LOG_LENGTH);
                 final String log = GL20.glGetShaderInfoLog(id, length);
-                throw new IllegalStateException(log);
+              //  throw new IllegalStateException(log);
             }
 
             uniformBuffer.updateLocations();

@@ -7,7 +7,7 @@ public final class BTSConstants {
     public static final String MC_VERSION = "1.12.2";
     public static final String DEPS = "required:forge@[14.23.5.2854,);";
 
-    public static final String BASE_PACKAGE = "io.karma.io.karma.bts";
+    public static final String BASE_PACKAGE = "io.karma.bts";
     public static final String CLIENT_PROXY = BASE_PACKAGE + ".client.ClientProxy";
     public static final String SERVER_PROXY = BASE_PACKAGE + ".server.ServerProxy";
 
