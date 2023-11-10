@@ -20,7 +20,7 @@ public final class MixinConfigPlugin implements IMixinConfigPlugin {
 
     }
 
-    public static final boolean REMAP = false;
+    public static final boolean REMAP = true;
 
     @Override
     public String getRefMapperConfig() {

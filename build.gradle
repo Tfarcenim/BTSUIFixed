@@ -88,7 +88,6 @@ dependencies {
 }
 
 processResources {
-    duplicatesStrategy= 'include'
     inputs.property "version", project.version
     inputs.property "mcversion", minecraft_version
 

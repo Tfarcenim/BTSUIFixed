@@ -188,7 +188,7 @@ public final class HUDConfigScreen extends BTSScreen {
         final int y = height - 90;
 
         addButton(new HUDConfigButton(this, posUpButtonId, x + 35, y + 5, 20, 20, "↑", String.format("tooltip.%s.hud_config.move_up", BTSConstants.MODID)));
-        addButton(new HUDConfigButton(this, posLeftButtonId, x + 10, y + 30, 20, 20, "←", String.format("tooltip.%s.hud_config.move_left", BTSConstants.MODID)));
+        addButton(new HUDConfigButton(this, posLeftButtonId, x + 10, y + 30, 20, 20, "\u2190", String.format("tooltip.%s.hud_config.move_left", BTSConstants.MODID)));
         addButton(new HUDConfigButton(this, posRightButtonId, x + 60, y + 30, 20, 20, "→", String.format("tooltip.%s.hud_config.move_right", BTSConstants.MODID)));
         addButton(new HUDConfigButton(this, posDownButtonId, x + 35, y + 55, 20, 20, "↓", String.format("tooltip.%s.hud_config.move_down", BTSConstants.MODID)));
 
