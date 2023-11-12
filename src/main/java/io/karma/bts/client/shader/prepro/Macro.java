@@ -1,9 +1,10 @@
 package io.karma.bts.client.shader.prepro;
 
-import io.karma.kommons.collection.GenericMap;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Map;
 
 /**
  * Represents a pre-processor macro in GLSL.
@@ -17,5 +18,5 @@ import org.jetbrains.annotations.NotNull;
 public interface Macro {
     @NotNull String getName();
 
-    void transform(final @NotNull GenericMap<String> ctx, final @NotNull String[] args, final @NotNull StringBuilder builder) throws PreProcessorException;
+    void transform(final @NotNull Map<String,Object> ctx, final @NotNull String[] args, final @NotNull StringBuilder builder) throws PreProcessorException;
 }

@@ -2,7 +2,6 @@ package io.karma.bts.common.registry;
 
 import com.google.common.collect.SetMultimap;
 import io.karma.bts.common.BTSMod;
-import io.karma.kommons.function.Functions;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.network.datasync.DataSerializer;
@@ -83,7 +82,12 @@ public final class AutoRegistry {
 
         for (final ASMData data : dataSet) {
             final String className = data.getClassName();
-            final Class<?> clazz = Functions.tryGet(() -> Class.forName(className, false, classLoader), null);
+            Class<?> clazz;
+            try {
+                clazz = Class.forName(className, false, classLoader);
+            } catch (ClassNotFoundException e) {
+                clazz = null;
+            }
 
             if (clazz == null) {
                 continue; // Skip classes we can't resolve
@@ -94,21 +98,30 @@ public final class AutoRegistry {
 
             if (objectName.equals(className)) { // Register a new class instance
                 BTSMod.LOGGER.info("Registering class {}", className);
-                instance = Functions.tryGet(clazz::newInstance, null);
+                try {
+                    instance =clazz.newInstance();
+                } catch (InstantiationException | IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
             }
             else { // Register an instance from a static field
                 BTSMod.LOGGER.info("Registering field {}#{}", className, objectName);
-                final Field field = Functions.tryGet(() -> clazz.getDeclaredField(objectName), null);
-
-                if (field == null) {
-                    throw new IllegalStateException("Could not fetch field");
+                final Field field;
+                try {
+                    field = clazz.getDeclaredField(objectName);
+                } catch (NoSuchFieldException e) {
+                    throw new RuntimeException(e);
                 }
 
                 if (!field.isAccessible()) {
                     field.setAccessible(true);
                 }
 
-                instance = Functions.tryGet(() -> field.get(null));
+                try {
+                    instance = field.get(null);
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
             }
 
             if (instance == null) {

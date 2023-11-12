@@ -20,7 +20,7 @@ public final class MixinConfigPlugin implements IMixinConfigPlugin {
 
     }
 
-    public static final boolean REMAP = true;
+    public static final boolean REMAP = false;
 
     @Override
     public String getRefMapperConfig() {
@@ -31,8 +31,8 @@ public final class MixinConfigPlugin implements IMixinConfigPlugin {
     public boolean shouldApplyMixin(final @NotNull String targetClassName, final @NotNull String mixinClassName) {
         if (BTSConstants.ENABLE_CL_WARNINGS) {
             // @formatter:off
-            return !mixinClassName.equals("io.karma.io.karma.bts.common.mixins.JarDiscovererMixin")
-                && !mixinClassName.equals("io.karma.io.karma.bts.common.mixins.DirectoryDiscovererMixin");
+            return !mixinClassName.equals("io.karma.bts.common.mixins.JarDiscovererMixin")
+                && !mixinClassName.equals("io.karma.bts.common.mixins.DirectoryDiscovererMixin");
             // @formatter:on
         }
 

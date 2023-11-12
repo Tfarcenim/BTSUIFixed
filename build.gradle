@@ -74,10 +74,10 @@ dependencies {
 
     implementation group: 'org.jetbrains', name: 'annotations', version: annotations_version
 
-    implementation group: 'io.karma.kommons', name: 'kommons', version: kommons_version
-    implementation group: 'io.karma.sliced', name: 'sliced', version: sliced_version
+   // implementation group: 'io.karma.kommons', name: 'kommons', version: kommons_version
+//    implementation group: 'io.karma.sliced', name: 'sliced', version: sliced_version
 
-    implementation group: 'org.joml', name: 'joml' , version: joml_version
+  //  implementation group: 'org.joml', name: 'joml' , version: joml_version
 
     implementation('org.spongepowered:mixin:0.8.5-SNAPSHOT') {
         exclude module: 'guava'

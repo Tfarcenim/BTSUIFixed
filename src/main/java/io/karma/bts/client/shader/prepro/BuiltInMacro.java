@@ -1,15 +1,15 @@
 package io.karma.bts.client.shader.prepro;
 
 import io.karma.bts.common.BTSConstants;
-import io.karma.kommons.collection.GenericMap;
-import io.karma.kommons.function.TriConsumer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.logging.log4j.util.TriConsumer;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -26,14 +26,14 @@ public enum BuiltInMacro implements Macro {
     // @formatter:on
 
     private final String friendlyName;
-    private final TriConsumer<GenericMap<String>, String[], StringBuilder> transform;
+    private final TriConsumer<Map<String,Object>, String[], StringBuilder> transform;
 
-    BuiltInMacro(final @NotNull String friendlyName, final @NotNull TriConsumer<GenericMap<String>, String[], StringBuilder> transform) {
+    BuiltInMacro(final @NotNull String friendlyName, final @NotNull TriConsumer<Map<String,Object>, String[], StringBuilder> transform) {
         this.friendlyName = friendlyName;
         this.transform = transform;
     }
 
-    private static void transformInclude(final @NotNull GenericMap<String> ctx, final @NotNull String[] args, final @NotNull StringBuilder builder) throws PreProcessorException {
+    private static void transformInclude(final @NotNull Map<String,Object> ctx, final @NotNull String[] args, final @NotNull StringBuilder builder) throws PreProcessorException {
         final int numArgs = args.length;
 
         if (numArgs != 2) {
@@ -70,7 +70,7 @@ public enum BuiltInMacro implements Macro {
     }
 
     @Override
-    public void transform(final @NotNull GenericMap<String> ctx, final @NotNull String[] args, final @NotNull StringBuilder builder) throws PreProcessorException {
+    public void transform(final @NotNull Map<String,Object> ctx, final @NotNull String[] args, final @NotNull StringBuilder builder) throws PreProcessorException {
         transform.accept(ctx, args, builder);
     }
 }

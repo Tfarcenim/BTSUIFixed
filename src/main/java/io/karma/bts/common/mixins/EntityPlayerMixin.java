@@ -1,6 +1,5 @@
 package io.karma.bts.common.mixins;
 
-import io.karma.bts.common.BTSLoadingPlugin;
 import io.karma.bts.common.hooks.BTSPlayer;
 import io.karma.bts.common.util.PingColor;
 import io.karma.bts.common.util.PingColorSerializer;

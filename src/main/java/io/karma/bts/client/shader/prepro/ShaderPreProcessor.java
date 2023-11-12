@@ -1,6 +1,5 @@
 package io.karma.bts.client.shader.prepro;
 
-import io.karma.kommons.collection.GenericHashMap;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
@@ -26,7 +25,7 @@ public final class ShaderPreProcessor {
         addMacro(BuiltInMacro.INCLUDE);
     }
 
-    private final GenericHashMap<String> context = new GenericHashMap<>();
+    private final HashMap<String,Object> context = new HashMap<>();
 
     // @formatter:off
     private ShaderPreProcessor() {}
