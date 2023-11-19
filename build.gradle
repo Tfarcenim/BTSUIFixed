@@ -19,7 +19,7 @@ apply plugin: 'eclipse'
 
 
 
-version = mod_version
+version = "$minecraft_version-$mod_version"
 group = mod_group
 archivesBaseName = mod_id
 
@@ -87,7 +87,7 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
-processResources {
+/*processResources {
     inputs.property "version", project.version
     inputs.property "mcversion", minecraft_version
 
@@ -102,6 +102,23 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+}*/
+
+processResources {
+    filesMatching('*.info') {
+        expand 'mod_id': mod_id, 'mod_name': mod_name, 'version': project.version,
+                'mcversion': minecraft_version, 'mod_description': mod_description,
+                'mod_author': mod_author
+    }
+
+  //  from(sourceSets.main.resources.srcDirs) {
+   //     include 'mcmod.info'
+
+
+   // }
+
+   // inputs.property 'version', project.version
+    //inputs.property 'mcversion', mc_version
 }
 
 mixin {

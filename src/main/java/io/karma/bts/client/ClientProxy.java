@@ -37,11 +37,6 @@ public final class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void onPostInit(final @NotNull FMLPostInitializationEvent event) {
-        super.onPostInit(event);
-    }
-
-    @Override
     public void addPingToRenderer(@NotNull BlockPos pos, @NotNull EnumSet<PingColor> colors) {
         super.addPingToRenderer(pos, colors);
         pingRenderer.addPing(pos, colors);

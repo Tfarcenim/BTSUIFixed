@@ -3243,7 +3243,7 @@ abstract class MemUtil {
         }
 
         public void copy(float[] arr, int off, Matrix4f dest) {
-            dest._m00(arr[off+0])
+            dest._m00(arr[off])
             ._m01(arr[off+1])
             ._m02(arr[off+2])
             ._m03(arr[off+3])
@@ -3262,7 +3262,7 @@ abstract class MemUtil {
         }
 
         public void copyTransposed(float[] arr, int off, Matrix4f dest) {
-            dest._m00(arr[off+0])
+            dest._m00(arr[off])
             ._m10(arr[off+1])
             ._m20(arr[off+2])
             ._m30(arr[off+3])
@@ -3281,7 +3281,7 @@ abstract class MemUtil {
         }
 
         public void copy(float[] arr, int off, Matrix3f dest) {
-            dest._m00(arr[off+0])
+            dest._m00(arr[off])
             ._m01(arr[off+1])
             ._m02(arr[off+2])
             ._m10(arr[off+3])
@@ -3293,7 +3293,7 @@ abstract class MemUtil {
         }
 
         public void copy(float[] arr, int off, Matrix4x3f dest) {
-            dest._m00(arr[off+0])
+            dest._m00(arr[off])
             ._m01(arr[off+1])
             ._m02(arr[off+2])
             ._m10(arr[off+3])
@@ -3308,7 +3308,7 @@ abstract class MemUtil {
         }
 
         public void copy(float[] arr, int off, Matrix3x2f dest) {
-            dest._m00(arr[off+0])
+            dest._m00(arr[off])
             ._m01(arr[off+1])
             ._m10(arr[off+2])
             ._m11(arr[off+3])
@@ -3317,7 +3317,7 @@ abstract class MemUtil {
         }
 
         public void copy(double[] arr, int off, Matrix3x2d dest) {
-            dest._m00(arr[off+0])
+            dest._m00(arr[off])
             ._m01(arr[off+1])
             ._m10(arr[off+2])
             ._m11(arr[off+3])
@@ -3326,7 +3326,7 @@ abstract class MemUtil {
         }
 
         public void copy(float[] arr, int off, Matrix3x2d dest) {
-            dest._m00(arr[off+0])
+            dest._m00(arr[off])
             ._m01(arr[off+1])
             ._m10(arr[off+2])
             ._m11(arr[off+3])
@@ -3335,21 +3335,21 @@ abstract class MemUtil {
         }
 
         public void copy(float[] arr, int off, Matrix2f dest) {
-            dest._m00(arr[off+0])
+            dest._m00(arr[off])
             ._m01(arr[off+1])
             ._m10(arr[off+2])
             ._m11(arr[off+3]);
         }
 
         public void copy(double[] arr, int off, Matrix2d dest) {
-            dest._m00(arr[off+0])
+            dest._m00(arr[off])
             ._m01(arr[off+1])
             ._m10(arr[off+2])
             ._m11(arr[off+3]);
         }
 
         public void copy(Matrix4f src, float[] dest, int off) {
-            dest[off+0]  = src.m00();
+            dest[off]  = src.m00();
             dest[off+1]  = src.m01();
             dest[off+2]  = src.m02();
             dest[off+3]  = src.m03();
@@ -3368,7 +3368,7 @@ abstract class MemUtil {
         }
 
         public void copy(Matrix3f src, float[] dest, int off) {
-            dest[off+0] = src.m00();
+            dest[off] = src.m00();
             dest[off+1] = src.m01();
             dest[off+2] = src.m02();
             dest[off+3] = src.m10();
@@ -3380,7 +3380,7 @@ abstract class MemUtil {
         }
 
         public void copy(Matrix4x3f src, float[] dest, int off) {
-            dest[off+0]  = src.m00();
+            dest[off]  = src.m00();
             dest[off+1]  = src.m01();
             dest[off+2]  = src.m02();
             dest[off+3]  = src.m10();
@@ -3395,7 +3395,7 @@ abstract class MemUtil {
         }
 
         public void copy(Matrix3x2f src, float[] dest, int off) {
-            dest[off+0] = src.m00();
+            dest[off] = src.m00();
             dest[off+1] = src.m01();
             dest[off+2] = src.m10();
             dest[off+3] = src.m11();
@@ -3404,7 +3404,7 @@ abstract class MemUtil {
         }
 
         public void copy(Matrix3x2d src, double[] dest, int off) {
-            dest[off+0] = src.m00();
+            dest[off] = src.m00();
             dest[off+1] = src.m01();
             dest[off+2] = src.m10();
             dest[off+3] = src.m11();
@@ -3413,21 +3413,21 @@ abstract class MemUtil {
         }
 
         public void copy(Matrix2f src, float[] dest, int off) {
-            dest[off+0] = src.m00();
+            dest[off] = src.m00();
             dest[off+1] = src.m01();
             dest[off+2] = src.m10();
             dest[off+3] = src.m11();
         }
 
         public void copy(Matrix2d src, double[] dest, int off) {
-            dest[off+0] = src.m00();
+            dest[off] = src.m00();
             dest[off+1] = src.m01();
             dest[off+2] = src.m10();
             dest[off+3] = src.m11();
         }
 
         public void copy4x4(Matrix4x3f src, float[] dest, int off) {
-            dest[off+0]  = src.m00();
+            dest[off]  = src.m00();
             dest[off+1]  = src.m01();
             dest[off+2]  = src.m02();
             dest[off+3]  = 0.0f;
@@ -3446,7 +3446,7 @@ abstract class MemUtil {
         }
 
         public void copy4x4(Matrix4x3d src, float[] dest, int off) {
-            dest[off+0]  = (float) src.m00();
+            dest[off]  = (float) src.m00();
             dest[off+1]  = (float) src.m01();
             dest[off+2]  = (float) src.m02();
             dest[off+3]  = 0.0f;
@@ -3465,7 +3465,7 @@ abstract class MemUtil {
         }
 
         public void copy4x4(Matrix4x3d src, double[] dest, int off) {
-            dest[off+0]  = src.m00();
+            dest[off]  = src.m00();
             dest[off+1]  = src.m01();
             dest[off+2]  = src.m02();
             dest[off+3]  = 0.0;
@@ -3484,7 +3484,7 @@ abstract class MemUtil {
         }
 
         public void copy3x3(Matrix3x2f src, float[] dest, int off) {
-            dest[off+0] = src.m00();
+            dest[off] = src.m00();
             dest[off+1] = src.m01();
             dest[off+2] = 0.0f;
             dest[off+3] = src.m10();
@@ -3496,7 +3496,7 @@ abstract class MemUtil {
         }
 
         public void copy3x3(Matrix3x2d src, double[] dest, int off) {
-            dest[off+0] = src.m00();
+            dest[off] = src.m00();
             dest[off+1] = src.m01();
             dest[off+2] = 0.0;
             dest[off+3] = src.m10();
@@ -3508,7 +3508,7 @@ abstract class MemUtil {
         }
 
         public void copy4x4(Matrix3x2f src, float[] dest, int off) {
-            dest[off+0]  = src.m00();
+            dest[off]  = src.m00();
             dest[off+1]  = src.m01();
             dest[off+2]  = 0.0f;
             dest[off+3]  = 0.0f;
@@ -3527,7 +3527,7 @@ abstract class MemUtil {
         }
 
         public void copy4x4(Matrix3x2d src, double[] dest, int off) {
-            dest[off+0]  = src.m00();
+            dest[off]  = src.m00();
             dest[off+1]  = src.m01();
             dest[off+2]  = 0.0;
             dest[off+3]  = 0.0;
@@ -3954,8 +3954,8 @@ abstract class MemUtil {
                 Vector2i_x = checkVector2i();
                 floatArrayOffset = UNSAFE.arrayBaseOffset(float[].class);
                 // Check if we can use object field offset/address put/get methods
-                sun.misc.Unsafe.class.getDeclaredMethod("getLong", new Class[] {Object.class, long.class});
-                sun.misc.Unsafe.class.getDeclaredMethod("putLong", new Class[] {Object.class, long.class, long.class});
+                sun.misc.Unsafe.class.getDeclaredMethod("getLong", Object.class, long.class);
+                sun.misc.Unsafe.class.getDeclaredMethod("putLong", Object.class, long.class, long.class);
             } catch (NoSuchFieldException e) {
                 throw new UnsupportedOperationException(e);
             } catch (NoSuchMethodException e) {

@@ -70,18 +70,6 @@ public class Vector4f implements Externalizable, Cloneable, Vector4fc {
         this.w = 1.0f;
     }
 
-    /**
-     * Create a new {@link Vector4f} with the same values as <code>v</code>.
-     * 
-     * @param v
-     *          the {@link Vector4fc} to copy the values from
-     */
-    public Vector4f(Vector4fc v) {
-        this.x = v.x();
-        this.y = v.y();
-        this.z = v.z();
-        this.w = v.w();
-    }
 
     /**
      * Create a new {@link Vector4f} with the same values as <code>v</code>.

@@ -19,16 +19,12 @@ public class CommonProxy {
     }
 
     public void onPreInit(final @NotNull FMLPreInitializationEvent event) {
-        final EventBus bus = MinecraftForge.EVENT_BUS;
-        bus.register(CommonEventHandler.INSTANCE);
-        bus.register(PingHandler.INSTANCE);
+
     }
 
     public void onInit(final @NotNull FMLInitializationEvent event) {
     }
 
-    public void onPostInit(final @NotNull FMLPostInitializationEvent event) {
-    }
 
     // Server stuff
 
