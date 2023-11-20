@@ -1,5 +1,6 @@
 package io.karma.bts.client.network;
 
+import io.karma.bts.client.ClientProxy;
 import io.karma.bts.common.BTSMod;
 import io.karma.bts.common.util.PingColor;
 import io.karma.bts.server.network.PacketRemovePing;
@@ -27,7 +28,7 @@ public final class HandlerRemovePing implements IMessageHandler<PacketRemovePing
             final EnumSet<PingColor> colors = message.colors;
 
             BTSMod.LOGGER.debug("Received PacketRemovePing for ping at [{}, {}, {}]", pos.getX(), pos.getY(), pos.getZ());
-            BTSMod.PROXY.removePingFromRenderer(pos, colors);
+            ClientProxy.removePingFromRenderer(pos, colors);
         });
 
         return null;

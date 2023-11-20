@@ -1,5 +1,6 @@
 package io.karma.bts.client.screen;
 
+import io.karma.bts.client.ClientProxy;
 import io.karma.bts.client.render.HUDRenderer;
 import io.karma.bts.common.BTSConstants;
 import io.karma.bts.common.BTSMod;
@@ -201,7 +202,7 @@ public final class HUDConfigScreen extends BTSScreen {
     @Override
     public void onGuiClosed() {
         renderer.writeToConfig();
-        BTSMod.PROXY.requestHUDUpdate();
+        ClientProxy.requestHUDUpdate();
 
         final EntityPlayer player = mc.player;
 

@@ -1,6 +1,7 @@
 package io.karma.bts.common;
 
 import io.karma.bts.client.network.*;
+import io.karma.bts.common.command.BTSCommand;
 import io.karma.bts.common.registry.AutoRegistry;
 import io.karma.bts.server.network.*;
 import net.minecraftforge.common.MinecraftForge;
@@ -31,8 +32,6 @@ import java.util.concurrent.TimeUnit;
 public final class BTSMod {
     public static final Logger LOGGER = LogManager.getLogger(BTSConstants.NAME);
 
-    @SidedProxy(clientSide = BTSConstants.CLIENT_PROXY, serverSide = BTSConstants.SERVER_PROXY)
-    public static CommonProxy PROXY;
     public static SimpleNetworkWrapper CHANNEL;
 
     @EventHandler
@@ -47,7 +46,6 @@ public final class BTSMod {
         bus.register(CommonEventHandler.INSTANCE);
         bus.register(PingHandler.INSTANCE);
 
-        PROXY.onPreInit(event);
         time = System.nanoTime() - startTime;
         LOGGER.info("Pre-initialization done in {}ms ({}ns)", TimeUnit.MILLISECONDS.convert(time, TimeUnit.NANOSECONDS), time);
 
@@ -58,7 +56,6 @@ public final class BTSMod {
     public void onInit(final @NotNull FMLInitializationEvent event) {
         final long startTime = System.nanoTime();
 
-        PROXY.onInit(event);
         CHANNEL = NetworkRegistry.INSTANCE.newSimpleChannel(BTSConstants.MODID);
         registerPackets();
         AutoRegistry.INSTANCE.init();
@@ -69,7 +66,7 @@ public final class BTSMod {
 
     @EventHandler
     public void onServerStarting(final @NotNull FMLServerStartingEvent event) {
-        PROXY.onServerStarting(event);
+        event.registerServerCommand(new BTSCommand());
     }
 
     private void registerPackets() {

@@ -29,7 +29,6 @@ public class CommonProxy {
     // Server stuff
 
     public void onServerStarting(final @NotNull FMLServerStartingEvent event) {
-        event.registerServerCommand(new BTSCommand());
     }
 
     // Client stuff

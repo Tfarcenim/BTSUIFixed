@@ -1,5 +1,6 @@
 package io.karma.bts.client.network;
 
+import io.karma.bts.client.ClientProxy;
 import io.karma.bts.common.BTSMod;
 import io.karma.bts.server.network.PacketClearPings;
 import net.minecraft.client.Minecraft;
@@ -19,7 +20,7 @@ public final class HandlerClearPings implements IMessageHandler<PacketClearPings
     public IMessage onMessage(final @NotNull PacketClearPings message, final @NotNull MessageContext ctx) {
         Minecraft.getMinecraft().addScheduledTask(() -> {
             BTSMod.LOGGER.debug("Received PacketClearPings");
-            BTSMod.PROXY.clearPingRenderer();
+            ClientProxy.clearPingRenderer();
         });
 
         return null;

@@ -1,5 +1,6 @@
 package io.karma.bts.client.network;
 
+import io.karma.bts.client.ClientProxy;
 import io.karma.bts.common.BTSMod;
 import io.karma.bts.common.util.PingColor;
 import io.karma.bts.server.network.PacketAddPing;
@@ -27,7 +28,7 @@ public final class HandlerAddPing implements IMessageHandler<PacketAddPing, IMes
             final EnumSet<PingColor> colors = message.colors;
 
             BTSMod.LOGGER.debug("Received PacketAddPing for ping at [{}, {}, {}]", pos.getX(), pos.getY(), pos.getZ());
-            BTSMod.PROXY.addPingToRenderer(pos, colors);
+            ClientProxy.addPingToRenderer(pos, colors);
         });
 
         return null;
