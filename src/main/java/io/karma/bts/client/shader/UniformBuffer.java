@@ -1,9 +1,9 @@
 package io.karma.bts.client.shader;
 
+import io.karma.repackage.joml.*;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
-import org.joml.*;
 
 import java.util.Set;
 

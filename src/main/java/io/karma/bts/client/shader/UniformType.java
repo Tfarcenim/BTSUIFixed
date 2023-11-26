@@ -1,8 +1,8 @@
 package io.karma.bts.client.shader;
 
 import io.karma.bts.client.shader.UniformBufferImpl.*;
+import io.karma.repackage.joml.*;
 import org.jetbrains.annotations.NotNull;
-import org.joml.*;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL40;
 

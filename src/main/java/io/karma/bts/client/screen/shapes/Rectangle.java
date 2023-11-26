@@ -1,6 +1,6 @@
 package io.karma.bts.client.screen.shapes;
 
-import org.joml.Vector2i;
+import io.karma.repackage.joml.Vector2i;
 
 public class Rectangle implements Shape{
 

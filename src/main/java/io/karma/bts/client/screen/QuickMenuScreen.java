@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
-import org.joml.Vector2i;
+import io.karma.repackage.joml.Vector2i;
 
 import java.io.IOException;
 

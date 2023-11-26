@@ -1,6 +1,6 @@
 package io.karma.bts.client.screen.shapes;
 
-import org.joml.Vector2i;
+import io.karma.repackage.joml.Vector2i;
 
 import java.util.ArrayList;
 import java.util.List;
