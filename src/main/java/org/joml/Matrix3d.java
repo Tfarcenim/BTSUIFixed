@@ -879,7 +879,7 @@ public class Matrix3d implements Externalizable, Cloneable, Matrix3dc {
      *          the array to read the matrix values from
      * @return this
      */
-    public Matrix3d set(double m[]) {
+    public Matrix3d set(double[] m) {
         m00 = m[0];
         m01 = m[1];
         m02 = m[2];
@@ -907,8 +907,8 @@ public class Matrix3d implements Externalizable, Cloneable, Matrix3dc {
      *          the offset into the array
      * @return this
      */
-    public Matrix3d set(double m[], int off) {
-        m00 = m[off+0];
+    public Matrix3d set(double[] m, int off) {
+        m00 = m[off];
         m01 = m[off+1];
         m02 = m[off+2];
         m10 = m[off+3];
@@ -933,7 +933,7 @@ public class Matrix3d implements Externalizable, Cloneable, Matrix3dc {
      *          the array to read the matrix values from
      * @return this
      */
-    public Matrix3d set(float m[]) {
+    public Matrix3d set(float[] m) {
         m00 = m[0];
         m01 = m[1];
         m02 = m[2];
@@ -961,8 +961,8 @@ public class Matrix3d implements Externalizable, Cloneable, Matrix3dc {
      *          the offset into the array
      * @return this
      */
-    public Matrix3d set(float m[], int off) {
-        m00 = m[off+0];
+    public Matrix3d set(float[] m, int off) {
+        m00 = m[off];
         m01 = m[off+1];
         m02 = m[off+2];
         m10 = m[off+3];
@@ -1199,7 +1199,7 @@ public class Matrix3d implements Externalizable, Cloneable, Matrix3dc {
 //#endif
 
     public double[] get(double[] arr, int offset) {
-        arr[offset+0] = m00;
+        arr[offset] = m00;
         arr[offset+1] = m01;
         arr[offset+2] = m02;
         arr[offset+3] = m10;
@@ -1216,7 +1216,7 @@ public class Matrix3d implements Externalizable, Cloneable, Matrix3dc {
     }
 
     public float[] get(float[] arr, int offset) {
-        arr[offset+0] = (float)m00;
+        arr[offset] = (float)m00;
         arr[offset+1] = (float)m01;
         arr[offset+2] = (float)m02;
         arr[offset+3] = (float)m10;
@@ -4188,9 +4188,7 @@ public class Matrix3d implements Externalizable, Cloneable, Matrix3dc {
             return false;
         if (Double.doubleToLongBits(m21) != Double.doubleToLongBits(other.m21))
             return false;
-        if (Double.doubleToLongBits(m22) != Double.doubleToLongBits(other.m22))
-            return false;
-        return true;
+        return Double.doubleToLongBits(m22) == Double.doubleToLongBits(other.m22);
     }
 
     public boolean equals(Matrix3dc m, double delta) {
@@ -4214,9 +4212,7 @@ public class Matrix3d implements Externalizable, Cloneable, Matrix3dc {
             return false;
         if (!Runtime.equals(m21, m.m21(), delta))
             return false;
-        if (!Runtime.equals(m22, m.m22(), delta))
-            return false;
-        return true;
+        return Runtime.equals(m22, m.m22(), delta);
     }
 
     /**
@@ -4815,9 +4811,9 @@ public class Matrix3d implements Externalizable, Cloneable, Matrix3dc {
         double num1 = orientation.x() + orientation.x();
         double num2 = orientation.y() + orientation.y();
         double num3 = orientation.z() + orientation.z();
-        double normalX = (double) (orientation.x() * num3 + orientation.w() * num2);
-        double normalY = (double) (orientation.y() * num3 - orientation.w() * num1);
-        double normalZ = (double) (1.0 - (orientation.x() * num1 + orientation.y() * num2));
+        double normalX = orientation.x() * num3 + orientation.w() * num2;
+        double normalY = orientation.y() * num3 - orientation.w() * num1;
+        double normalZ = 1.0 - (orientation.x() * num1 + orientation.y() * num2);
         return reflect(normalX, normalY, normalZ, dest);
     }
 

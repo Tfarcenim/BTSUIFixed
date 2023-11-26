@@ -3,7 +3,7 @@ package io.karma.bts.client.screen;
 import io.karma.bts.common.BTSConstants;
 import io.karma.bts.common.BTSMod;
 import io.karma.bts.common.util.ColorUtils;
-import io.karma.kommons.Easings;
+import io.karma.bts.Easings;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.GuiMainMenu;

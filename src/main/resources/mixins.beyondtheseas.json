@@ -1,8 +1,7 @@
 {
   "package": "io.karma.bts.common.mixins",
   "required": true,
-  "refmap": "mixins.bts.refmap.json",
-  "plugin": "io.karma.bts.common.mixins.MixinConfigPlugin",
+  "refmap": "mixins.beyondtheseas.refmap.json",
   "target": "@env(DEFAULT)",
   "minVersion": "0.7",
   "compatibilityLevel": "JAVA_8",
@@ -10,10 +9,8 @@
     "maxShiftBy": 100
   },
   "mixins": [
-    "DirectoryDiscovererMixin",
     "EntityPlayerMixin",
-    "FoodStatsMixin",
-    "JarDiscovererMixin"
+    "FoodStatsMixin"
   ],
   "client": [
     "GuiIngameMenuMixin"

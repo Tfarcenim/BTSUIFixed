@@ -1,6 +1,5 @@
 package io.karma.bts.common.mixins;
 
-import io.karma.bts.common.BTSConstants;
 import org.jetbrains.annotations.NotNull;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
@@ -19,8 +18,7 @@ public final class MixinConfigPlugin implements IMixinConfigPlugin {
     public void onLoad(final @NotNull String mixinPackage) {
 
     }
-
-    public static final boolean REMAP = false;
+    public static final boolean REMAP = true;
 
     @Override
     public String getRefMapperConfig() {
@@ -29,13 +27,6 @@ public final class MixinConfigPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(final @NotNull String targetClassName, final @NotNull String mixinClassName) {
-        if (BTSConstants.ENABLE_CL_WARNINGS) {
-            // @formatter:off
-            return !mixinClassName.equals("io.karma.bts.common.mixins.JarDiscovererMixin")
-                && !mixinClassName.equals("io.karma.bts.common.mixins.DirectoryDiscovererMixin");
-            // @formatter:on
-        }
-
         return true;
     }
 
