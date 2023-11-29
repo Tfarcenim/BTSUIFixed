@@ -1,5 +1,6 @@
 package io.karma.bts.client.shader;
 
+import io.karma.bts.joml.*;
 import io.karma.repackage.joml.*;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraftforge.fml.relauncher.Side;

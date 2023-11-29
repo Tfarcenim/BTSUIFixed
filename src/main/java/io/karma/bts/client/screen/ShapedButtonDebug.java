@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import io.karma.repackage.joml.Vector2i;
+import io.karma.bts.joml.Vector2i;
 
 public class ShapedButtonDebug extends GuiButton {
 
