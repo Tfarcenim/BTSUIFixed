@@ -18,7 +18,7 @@ public final class MixinConfigPlugin implements IMixinConfigPlugin {
     public void onLoad(final @NotNull String mixinPackage) {
 
     }
-    public static final boolean REMAP = false;
+    public static final boolean REMAP = true;
 
     @Override
     public String getRefMapperConfig() {

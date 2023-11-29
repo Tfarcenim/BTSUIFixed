@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.karma.bts.joml;
+package io.karma.bts.repackage.joml;
 
 import java.lang.reflect.Field;
 //#ifdef __HAS_NIO__

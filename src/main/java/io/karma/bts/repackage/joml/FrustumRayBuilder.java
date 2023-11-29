@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.karma.bts.joml;
+package io.karma.bts.repackage.joml;
 
 /**
  * Provides methods to compute rays through an arbitrary perspective transformation defined by a {@link Matrix4fc}.

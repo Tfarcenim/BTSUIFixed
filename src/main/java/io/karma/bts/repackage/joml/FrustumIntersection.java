@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package io.karma.bts.joml;
+package io.karma.bts.repackage.joml;
 
 /**
  * Efficiently performs frustum intersection tests by caching the frustum planes of an arbitrary transformation {@link Matrix4fc matrix}.

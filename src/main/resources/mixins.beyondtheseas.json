@@ -10,7 +10,9 @@
   },
   "mixins": [
     "EntityPlayerMixin",
-    "FoodStatsMixin"
+    "FoodStatsMixin",
+    "JarDiscovererMixin",
+    "ModDiscovererMixin"
   ],
   "client": [
     "GuiIngameMenuMixin"
