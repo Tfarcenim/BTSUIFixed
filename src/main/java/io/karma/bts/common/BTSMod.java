@@ -44,7 +44,6 @@ public final class BTSMod {
 
         final EventBus bus = MinecraftForge.EVENT_BUS;
         bus.register(CommonEventHandler.INSTANCE);
-        bus.register(PingHandler.INSTANCE);
 
         time = System.nanoTime() - startTime;
         LOGGER.info("Pre-initialization done in {}ms ({}ns)", TimeUnit.MILLISECONDS.convert(time, TimeUnit.NANOSECONDS), time);
@@ -66,13 +65,10 @@ public final class BTSMod {
 
     @EventHandler
     public void onServerStarting(final @NotNull FMLServerStartingEvent event) {
-        event.registerServerCommand(new BTSCommand());
+       // event.registerServerCommand(new BTSCommand());
     }
 
     private void registerPackets() {
-        CHANNEL.registerMessage(HandlerAddPing.class, PacketAddPing.class, 1, Side.CLIENT);
-        CHANNEL.registerMessage(HandlerRemovePing.class, PacketRemovePing.class, 2, Side.CLIENT);
-        CHANNEL.registerMessage(HandlerClearPings.class, PacketClearPings.class, 3, Side.CLIENT);
         CHANNEL.registerMessage(ButtonCommandHandler.class, RunCommandPacket.class,4,Side.SERVER);
         CHANNEL.registerMessage(KeybindHandler.class, UseKeybindPacket.class,5,Side.SERVER);
     }

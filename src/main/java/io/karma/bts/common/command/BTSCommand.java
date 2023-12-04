@@ -10,7 +10,6 @@ public class BTSCommand extends CommandTreeBase {
 
     public BTSCommand() {
         addSubcommand(new CommandTreeHelp(this));
-        addSubcommand(new PingCommand());
     }
 
     @Override

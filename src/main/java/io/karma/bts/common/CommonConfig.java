@@ -17,9 +17,6 @@ public final class CommonConfig {
     @Config.RangeDouble(min = .01,max = 100)
     public static double healAmount = 2;
 
-    @Config.Comment("The name of the NBT tag list in which pings are stored for every chunk.")
-    public static String pingSaveTagName = "bts_pings";
-
     @Config.Comment("Button 0 Command")
     public static String button0Command = "/gamemode creative %player";
     @Config.Comment("Button 1 Command")
