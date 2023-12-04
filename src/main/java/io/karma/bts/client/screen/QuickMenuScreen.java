@@ -3,6 +3,7 @@ package io.karma.bts.client.screen;
 import io.karma.bts.client.screen.shapes.Polygon;
 import io.karma.bts.common.BTSConstants;
 import io.karma.bts.common.BTSMod;
+import io.karma.bts.repackage.joml.Vector2i;
 import io.karma.bts.server.network.RunCommandPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -10,7 +11,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
-import io.karma.bts.repackage.joml.Vector2i;
 
 import java.io.IOException;
 
@@ -34,6 +34,8 @@ public class QuickMenuScreen extends BTSScreen {
 
     protected int guiLeft;
     protected int guiTop;
+
+    final long opened = Minecraft.getSystemTime();
 
     public QuickMenuScreen() {
         backgroundTextureSizeX = 512;
