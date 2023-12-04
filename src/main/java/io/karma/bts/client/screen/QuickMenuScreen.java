@@ -7,10 +7,14 @@ import io.karma.bts.repackage.joml.Vector2i;
 import io.karma.bts.server.network.RunCommandPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.MathHelper;
 
 import java.io.IOException;
 
@@ -227,7 +231,7 @@ public class QuickMenuScreen extends BTSScreen {
     }
 
     protected void drawBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        GlStateManager.color(1.0F, 1, 1, 1.0F);
         this.mc.getTextureManager().bindTexture(background);
         int w = 411;
         int h = 409;
@@ -237,7 +241,29 @@ public class QuickMenuScreen extends BTSScreen {
 
         int i = (this.width - backGroundSizeX) / 2;
         int j = (this.height - backGroundSizeY) / 2;
-        drawScaledCustomSizeModalRect(i, j, 0, 0, w, h, backGroundSizeX, backGroundSizeY, backgroundTextureSizeX, backgroundTextureSizeY);
+        GlStateManager.enableBlend();
+        drawScaledCustomSizeModalRectTrans(i, j, 0, 0, w, h, backGroundSizeX, backGroundSizeY, backgroundTextureSizeX, backgroundTextureSizeY);
+        GlStateManager.disableBlend();
+    }
+
+    public long timePassed() {
+        return Minecraft.getSystemTime() - opened;
+    }
+
+    public void drawScaledCustomSizeModalRectTrans(int x, int y, float u, float v, int uWidth, int vHeight, int width, int height, float tileWidth, float tileHeight)
+    {
+        float f = 1.0F / tileWidth;
+        float f1 = 1.0F / tileHeight;
+
+        int alpha = (int) (255 * MathHelper.clamp( timePassed() / 1000d,0,1));
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+        bufferbuilder.pos(x, y + height, 0.0D).tex(u * f, (v + (float)vHeight) * f1).color(255,0,255,alpha).endVertex();
+        bufferbuilder.pos(x + width, y + height, 0.0D).tex((u + (float)uWidth) * f, (v + (float)vHeight) * f1).color(0,255,255,alpha).endVertex();
+        bufferbuilder.pos(x + width, y, 0.0D).tex((u + (float)uWidth) * f, v * f1).color(255,0,255,alpha).endVertex();
+        bufferbuilder.pos(x, y, 0.0D).tex(u * f, v * f1).color(255,255,255,alpha).endVertex();
+        tessellator.draw();
     }
 
     protected void drawForegroundLayer(int mouseX, int mouseY, float partialTicks) {
