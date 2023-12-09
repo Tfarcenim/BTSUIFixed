@@ -3,11 +3,14 @@ package io.karma.bts.client;
 import io.karma.bts.client.screen.HUDConfigScreen;
 import io.karma.bts.client.screen.PauseScreen;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiOptions;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.util.MovementInput;
 import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.client.event.InputUpdateEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
@@ -29,6 +32,13 @@ public final class ClientEventHandler {
     public void onClientTick(final @NotNull ClientTickEvent event) {
         if (event.phase == Phase.END) {
             ticks++;
+            AbstractClientPlayer clientPlayer = Minecraft.getMinecraft().player;
+            if (clientPlayer != null) {
+                if (clientPlayer.onGround) {
+                    doubleJumped = false;
+                    isHoldingFirstJump = false;
+                }
+            }
         }
     }
 
@@ -36,6 +46,33 @@ public final class ClientEventHandler {
     public void onRenderTick(final @NotNull RenderTickEvent event) {
         if (event.phase == Phase.START) {
             partialTicks = event.renderTickTime;
+        }
+    }
+
+    public static boolean doubleJumped;
+
+    public static boolean isHoldingFirstJump;
+
+    @SubscribeEvent
+    public void updateInputs(InputUpdateEvent event) {
+        MovementInput movementInput = event.getMovementInput();
+        boolean holdingJump = movementInput.jump;
+        AbstractClientPlayer clientPlayer = Minecraft.getMinecraft().player;
+
+        if (holdingJump && clientPlayer.onGround) {
+            isHoldingFirstJump = true;
+        }
+
+        if (!holdingJump && !clientPlayer.onGround) {
+            isHoldingFirstJump = false;
+        }
+
+        //duoble jump
+        if (holdingJump && !clientPlayer.onGround && !isHoldingFirstJump) {
+            if (!doubleJumped) {
+                doubleJumped = true;
+                Minecraft.getMinecraft().player.jump();
+            }
         }
     }
 
