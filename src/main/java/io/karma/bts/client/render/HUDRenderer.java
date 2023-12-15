@@ -217,9 +217,12 @@ public final class HUDRenderer {
         fontRenderer.drawStringWithShadow(TextFormatting.BOLD + player.getDisplayNameString(), x + 4, y - fontRenderer.FONT_HEIGHT - 3, 0xFFFFFFFF);
     }
 
+    public static float mana;
+    public static int maxMana = 1;
+
     private void renderSPBar(final @NotNull EntityPlayer player, final @NotNull FontRenderer fontRenderer, final float partialTicks, final float zLevel) {
         // Stamina bar
-        final int newStaminaBarWidth = (int) ((STAMINA_BAR_BASE_WIDTH / 20F) * 20); // TODO: implement this
+        final int newStaminaBarWidth = (int) ((STAMINA_BAR_BASE_WIDTH / maxMana) * mana); // TODO: implement this
 
         // Guard against bars flickering when player is dead
         if (!player.isDead) {
@@ -248,7 +251,7 @@ public final class HUDRenderer {
             GuiUtils.drawTexturedModalRect(x, y, STAMINA_BAR_U, STAMINA_BAR_V, (int) w, STAMINA_BAR_BASE_HEIGHT, zLevel);
         }
 
-        final String str = String.format("%d/20 SP", player.getFoodStats().getFoodLevel());
+        final String str = String.format("%d/%d SP", (int)mana,maxMana);
         GlStateManager.translate(0F, 0F, zLevel + 1F);
         fontRenderer.drawStringWithShadow(str, x + 12, y + (STAMINA_BAR_BASE_HEIGHT >> 1) - (fontRenderer.FONT_HEIGHT >> 1) + 1, 0xFFFFFFFF);
     }

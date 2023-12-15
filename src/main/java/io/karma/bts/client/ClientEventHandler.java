@@ -1,5 +1,6 @@
 package io.karma.bts.client;
 
+import io.karma.bts.client.render.HUDRenderer;
 import io.karma.bts.client.screen.HUDConfigScreen;
 import io.karma.bts.client.screen.PauseScreen;
 import net.minecraft.client.Minecraft;
@@ -9,6 +10,9 @@ import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiOptions;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.MovementInput;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.InputUpdateEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -72,6 +76,28 @@ public final class ClientEventHandler {
             if (!doubleJumped) {
                 doubleJumped = true;
                 Minecraft.getMinecraft().player.jump();
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onChatGet(ClientChatReceivedEvent event) {
+        ITextComponent message = event.getMessage();
+        if (message instanceof TextComponentString) {
+            TextComponentString textComponentString = (TextComponentString) message;
+            String text = textComponentString.getText();
+            int index = text.indexOf('[');
+            if (index > -1) {
+                String string = text.substring(index);
+                int slash = string.indexOf("/");
+                if (slash > -1) {
+                    HUDRenderer.mana = Integer.parseInt(string.substring(1,slash));
+                    HUDRenderer.maxMana = Integer.parseInt(string.substring(slash+1,string.indexOf(']')));
+
+
+
+                    event.setCanceled(true);
+                }
             }
         }
     }

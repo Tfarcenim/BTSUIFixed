@@ -12,7 +12,8 @@
     "EntityPlayerMixin",
     "FoodStatsMixin",
     "JarDiscovererMixin",
-    "ModDiscovererMixin"
+    "ModDiscovererMixin",
+    "MinecraftServerMixin"
   ],
   "client": [
     "GuiIngameMenuMixin"

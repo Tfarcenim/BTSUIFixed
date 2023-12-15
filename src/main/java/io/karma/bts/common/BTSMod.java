@@ -36,18 +36,6 @@ public final class BTSMod {
 
     @EventHandler
     public void onPreInit(final @NotNull FMLPreInitializationEvent event) {
-        long startTime = System.nanoTime();
-        long time = System.nanoTime() - startTime;
-        LOGGER.info("Loaded configuration in {}ms ({}ns)", TimeUnit.MILLISECONDS.convert(time, TimeUnit.NANOSECONDS), time);
-
-        startTime = System.nanoTime();
-
-        final EventBus bus = MinecraftForge.EVENT_BUS;
-        bus.register(CommonEventHandler.INSTANCE);
-
-        time = System.nanoTime() - startTime;
-        LOGGER.info("Pre-initialization done in {}ms ({}ns)", TimeUnit.MILLISECONDS.convert(time, TimeUnit.NANOSECONDS), time);
-
         AutoRegistry.INSTANCE.preInit(event.getAsmData());
     }
 
