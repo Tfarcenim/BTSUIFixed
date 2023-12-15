@@ -1,7 +1,7 @@
-package io.karma.bts.client.network;
+package io.karma.bts.common.network;
 
 import io.karma.bts.common.util.KeybindInput;
-import io.karma.bts.server.network.UseKeybindPacket;
+import io.karma.bts.common.network.UseKeybindPacket;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;

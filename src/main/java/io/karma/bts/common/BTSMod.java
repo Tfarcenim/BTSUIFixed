@@ -1,18 +1,12 @@
 package io.karma.bts.common;
 
-import io.karma.bts.client.network.*;
-import io.karma.bts.common.command.BTSCommand;
+import io.karma.bts.common.network.*;
 import io.karma.bts.common.registry.AutoRegistry;
-import io.karma.bts.server.network.*;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.eventhandler.EventBus;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -59,5 +53,8 @@ public final class BTSMod {
     private void registerPackets() {
         CHANNEL.registerMessage(ButtonCommandHandler.class, RunCommandPacket.class,4,Side.SERVER);
         CHANNEL.registerMessage(KeybindHandler.class, UseKeybindPacket.class,5,Side.SERVER);
+
+        CHANNEL.registerMessage(C2SJumpPacketHandler.class, C2SJumpPacket.class,6,Side.SERVER);
+
     }
 }

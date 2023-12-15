@@ -1,8 +1,8 @@
-package io.karma.bts.client.network;
+package io.karma.bts.common.network;
 
 import io.karma.bts.common.BTSMod;
 import io.karma.bts.common.CommonConfig;
-import io.karma.bts.server.network.RunCommandPacket;
+import io.karma.bts.common.network.RunCommandPacket;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;

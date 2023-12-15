@@ -4,7 +4,7 @@ import io.karma.bts.client.screen.shapes.Polygon;
 import io.karma.bts.common.BTSConstants;
 import io.karma.bts.common.BTSMod;
 import io.karma.bts.repackage.joml.Vector2i;
-import io.karma.bts.server.network.RunCommandPacket;
+import io.karma.bts.common.network.RunCommandPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.BufferBuilder;

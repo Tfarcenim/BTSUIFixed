@@ -1,4 +1,4 @@
-package io.karma.bts.server.network;
+package io.karma.bts.common.network;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;

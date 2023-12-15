@@ -47,6 +47,10 @@ public final class CommonConfig {
     public static String dashKeybindCommand = "/effect %player speed 1 3";
     @Config.Comment("Taunt Keybind Command")
     public static String tauntKeybindCommand = "/say %player Please just do better :)";
+
+    @Config.Comment("Double Jump Command")
+    public static String doubleJumpCommand = "/say %player jump";
+
     @Config.Ignore
     public static final List<Supplier<String>> commands = new ArrayList<>();
 

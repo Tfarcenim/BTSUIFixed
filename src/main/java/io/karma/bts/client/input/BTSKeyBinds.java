@@ -4,7 +4,7 @@ import io.karma.bts.client.screen.HUDConfigScreen;
 import io.karma.bts.client.screen.QuickMenuScreen;
 import io.karma.bts.common.BTSMod;
 import io.karma.bts.common.util.KeybindInput;
-import io.karma.bts.server.network.UseKeybindPacket;
+import io.karma.bts.common.network.UseKeybindPacket;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.settings.KeyModifier;
 import net.minecraftforge.fml.client.FMLClientHandler;

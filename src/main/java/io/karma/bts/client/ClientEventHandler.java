@@ -3,6 +3,9 @@ package io.karma.bts.client;
 import io.karma.bts.client.render.HUDRenderer;
 import io.karma.bts.client.screen.HUDConfigScreen;
 import io.karma.bts.client.screen.PauseScreen;
+import io.karma.bts.common.BTSMod;
+import io.karma.bts.common.network.C2SJumpPacket;
+import io.karma.bts.common.network.C2SJumpPacketHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.GuiButton;
@@ -73,10 +76,13 @@ public final class ClientEventHandler {
 
         //duoble jump
         if (holdingJump && !clientPlayer.onGround && !isHoldingFirstJump) {
-            if (!doubleJumped) {
-                doubleJumped = true;
-                Minecraft.getMinecraft().player.jump();
-            }
+      //      if (!doubleJumped) {
+      //          doubleJumped = true;
+
+                BTSMod.CHANNEL.sendToServer(new C2SJumpPacket());
+
+                //Minecraft.getMinecraft().player.jump();
+       //     }
         }
     }
 

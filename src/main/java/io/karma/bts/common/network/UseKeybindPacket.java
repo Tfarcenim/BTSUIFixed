@@ -1,4 +1,4 @@
-package io.karma.bts.server.network;
+package io.karma.bts.common.network;
 
 import io.karma.bts.common.util.KeybindInput;
 import io.netty.buffer.ByteBuf;
