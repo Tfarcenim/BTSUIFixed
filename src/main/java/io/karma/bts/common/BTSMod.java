@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 @Mod( // @formatter:off
     modid = BTSConstants.MODID,
     acceptedMinecraftVersions = BTSConstants.MC_VERSION,
-   // acceptableRemoteVersions = BTSConstants.VERSION,
+    acceptableRemoteVersions = "*",
     dependencies = BTSConstants.DEPS
 )
 // @formatter:on

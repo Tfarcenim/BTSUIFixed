@@ -25,6 +25,8 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 public final class ClientEventHandler {
     public static final ClientEventHandler INSTANCE = new ClientEventHandler();
 
@@ -34,6 +36,33 @@ public final class ClientEventHandler {
     // @formatter:off
     private ClientEventHandler() {}
     // @formatter:on
+
+    @SubscribeEvent
+    public void chat(ClientChatReceivedEvent event) {
+        ITextComponent chat = event.getMessage();
+        if (chat instanceof TextComponentString) {
+            List<ITextComponent> siblings = chat.getSiblings();
+            int size = siblings.size();
+            if (size == 4 || size == 5) {
+                ITextComponent manaText = siblings.get(0);
+                if (manaText instanceof TextComponentString) {
+                    TextComponentString manaTextCompoentString = (TextComponentString) manaText;
+                    if (manaTextCompoentString.getText().equals("Mana:"))  {
+                        TextComponentString manaNumbers = (TextComponentString)siblings.get(size - 1);
+                        String raw = manaNumbers.getText();
+
+                        String parsed = raw.substring(3);
+                        parsed = parsed.substring(0,parsed.length()-1);
+
+                        String[] strings = parsed.split("/");
+                        HUDRenderer.mana = Integer.parseInt(strings[0]);
+                        HUDRenderer.maxMana = Integer.parseInt(strings[1]);
+                        event.setCanceled(true);
+                    }
+                }
+            }
+        }
+    }
 
     @SubscribeEvent
     public void onClientTick(final @NotNull ClientTickEvent event) {
@@ -93,7 +122,7 @@ public final class ClientEventHandler {
             TextComponentString textComponentString = (TextComponentString) message;
             String text = textComponentString.getText();
             int index = text.indexOf('[');
-            if (index > -1) {
+            if (text.endsWith("_automated") && index > -1) {
                 String string = text.substring(index);
                 int slash = string.indexOf("/");
                 if (slash > -1) {

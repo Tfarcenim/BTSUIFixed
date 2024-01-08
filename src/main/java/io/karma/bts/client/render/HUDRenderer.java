@@ -163,13 +163,13 @@ public final class HUDRenderer {
         GuiUtils.drawTexturedModalRect(xOffset, yOffset, 0, 0, HUD_BASE_WIDTH, HUD_BASE_HEIGHT, zLevel);
 
         // Money box
-        GlStateManager.pushMatrix();
-        GlStateManager.translate(xOffset, yOffset + 96, zLevel);
-        GlStateManager.scale(0.75F, 0.75F, 0.75F);
-        GlStateManager.color(1F, 1F, 1F, 1F);
-        bindHUDTexture();
-        GuiUtils.drawTexturedModalRect(0, 0, MONEY_BOX_U, MONEY_BOX_V, MONEY_BOX_BASE_WIDTH, MONEY_BOX_BASE_HEIGHT, 0F);
-        GlStateManager.popMatrix();
+     //   GlStateManager.pushMatrix();
+     //   GlStateManager.translate(xOffset, yOffset + 96, zLevel);
+     //   GlStateManager.scale(0.75F, 0.75F, 0.75F);
+     //   GlStateManager.color(1F, 1F, 1F, 1F);
+      //  bindHUDTexture();
+        //GuiUtils.drawTexturedModalRect(0, 0, MONEY_BOX_U, MONEY_BOX_V, MONEY_BOX_BASE_WIDTH, MONEY_BOX_BASE_HEIGHT, 0F);
+   //     GlStateManager.popMatrix();
 
         GlStateManager.disableBlend();
         GlStateManager.popMatrix();
@@ -218,7 +218,7 @@ public final class HUDRenderer {
     }
 
     public static float mana;
-    public static int maxMana = 1;
+    public static float maxMana = 1;
 
     private void renderSPBar(final @NotNull EntityPlayer player, final @NotNull FontRenderer fontRenderer, final float partialTicks, final float zLevel) {
         // Stamina bar
@@ -251,7 +251,7 @@ public final class HUDRenderer {
             GuiUtils.drawTexturedModalRect(x, y, STAMINA_BAR_U, STAMINA_BAR_V, (int) w, STAMINA_BAR_BASE_HEIGHT, zLevel);
         }
 
-        final String str = String.format("%d/%d SP", (int)mana,maxMana);
+        final String str = String.format("%.1f/%.1f SP", mana,maxMana);
         GlStateManager.translate(0F, 0F, zLevel + 1F);
         fontRenderer.drawStringWithShadow(str, x + 12, y + (STAMINA_BAR_BASE_HEIGHT >> 1) - (fontRenderer.FONT_HEIGHT >> 1) + 1, 0xFFFFFFFF);
     }
