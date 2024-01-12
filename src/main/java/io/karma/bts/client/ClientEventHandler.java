@@ -5,7 +5,6 @@ import io.karma.bts.client.screen.HUDConfigScreen;
 import io.karma.bts.client.screen.PauseScreen;
 import io.karma.bts.common.BTSMod;
 import io.karma.bts.common.network.C2SJumpPacket;
-import io.karma.bts.common.network.C2SJumpPacketHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.GuiButton;
@@ -68,13 +67,6 @@ public final class ClientEventHandler {
     public void onClientTick(final @NotNull ClientTickEvent event) {
         if (event.phase == Phase.END) {
             ticks++;
-            AbstractClientPlayer clientPlayer = Minecraft.getMinecraft().player;
-            if (clientPlayer != null) {
-                if (clientPlayer.onGround) {
-                    doubleJumped = false;
-                    isHoldingFirstJump = false;
-                }
-            }
         }
     }
 
@@ -85,9 +77,9 @@ public final class ClientEventHandler {
         }
     }
 
-    public static boolean doubleJumped;
 
-    public static boolean isHoldingFirstJump;
+    public static boolean wasHoldingJump;
+    static int jumpcount = 0;
 
     @SubscribeEvent
     public void updateInputs(InputUpdateEvent event) {
@@ -95,24 +87,20 @@ public final class ClientEventHandler {
         boolean holdingJump = movementInput.jump;
         AbstractClientPlayer clientPlayer = Minecraft.getMinecraft().player;
 
-        if (holdingJump && clientPlayer.onGround) {
-            isHoldingFirstJump = true;
+        if (clientPlayer.onGround) {
+            jumpcount = 0;
         }
 
-        if (!holdingJump && !clientPlayer.onGround) {
-            isHoldingFirstJump = false;
-        }
+        if (clientPlayer.capabilities.isCreativeMode) return;
 
-        //duoble jump
-        if (holdingJump && !clientPlayer.onGround && !isHoldingFirstJump) {
-      //      if (!doubleJumped) {
-      //          doubleJumped = true;
-
+        if (!wasHoldingJump && holdingJump) {
+            if (jumpcount > 0) {
+             //   clientPlayer.motionY += 1;
                 BTSMod.CHANNEL.sendToServer(new C2SJumpPacket());
-
-                //Minecraft.getMinecraft().player.jump();
-       //     }
+            }
+            jumpcount++;
         }
+        wasHoldingJump = holdingJump;
     }
 
     @SubscribeEvent

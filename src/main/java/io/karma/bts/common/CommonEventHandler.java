@@ -16,32 +16,17 @@ public final class CommonEventHandler {
 
     public static boolean muteMessage;
 
+    public static boolean manaSync = true;
+
     @SubscribeEvent
     public static void queryMana(TickEvent.PlayerTickEvent event) {
-        if (event.phase == TickEvent.Phase.START && event.player instanceof EntityPlayerMP) {
+        if (manaSync && event.phase == TickEvent.Phase.START && event.player instanceof EntityPlayerMP) {
 
             EntityPlayerMP entityPlayerMP = (EntityPlayerMP) event.player;
             MinecraftServer server = entityPlayerMP.server;
              muteMessage = true;
-            //entityPlayerMP.sendMessage(new TextComponentString(getManaMessage(entityPlayerMP)));
               server.getCommandManager().executeCommand(entityPlayerMP, "ms mana show");
             muteMessage = false;
         }
-    }
-
-    public static ITextComponent getNewMesaage(ITextComponent original) {
-        if (original instanceof TextComponentString && CommonEventHandler.muteMessage) {
-            TextComponentString textComponentString = (TextComponentString) original;
-            List<ITextComponent> siblings = textComponentString.getSiblings();
-            for (ITextComponent component : siblings) {
-                System.out.println(component);
-            }
-            return original;
-        }
-        return original;
-    }
-
-    private static String getManaMessage(EntityPlayerMP bar) {
-        return "Mana: {=====}["+(int)bar.getFoodStats().getSaturationLevel()+"/"+20+"]";
     }
 }
