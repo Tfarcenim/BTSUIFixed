@@ -1,7 +1,7 @@
 {
   "package": "io.karma.bts.common.mixins",
   "required": true,
-  "refmap": "mixins.beyondtheseas.refmap.json",
+  "refmap": "refmap.beyondtheseas.json",
   "target": "@env(DEFAULT)",
   "minVersion": "0.7",
   "compatibilityLevel": "JAVA_8",
@@ -9,7 +9,6 @@
     "maxShiftBy": 100
   },
   "mixins": [
-    "EntityPlayerMixin",
     "FoodStatsMixin",
     "JarDiscovererMixin",
     "MinecraftServerMixin",

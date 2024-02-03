@@ -104,28 +104,6 @@ public final class ClientEventHandler {
     }
 
     @SubscribeEvent
-    public void onChatGet(ClientChatReceivedEvent event) {
-        ITextComponent message = event.getMessage();
-        if (message instanceof TextComponentString) {
-            TextComponentString textComponentString = (TextComponentString) message;
-            String text = textComponentString.getText();
-            int index = text.indexOf('[');
-            if (text.endsWith("_automated") && index > -1) {
-                String string = text.substring(index);
-                int slash = string.indexOf("/");
-                if (slash > -1) {
-                    HUDRenderer.mana = Integer.parseInt(string.substring(1,slash));
-                    HUDRenderer.maxMana = Integer.parseInt(string.substring(slash+1,string.indexOf(']')));
-
-
-
-                    event.setCanceled(true);
-                }
-            }
-        }
-    }
-
-    @SubscribeEvent
     public void onGuiInit(final @NotNull GuiScreenEvent.InitGuiEvent event) {
         final GuiScreen screen = event.getGui();
 
