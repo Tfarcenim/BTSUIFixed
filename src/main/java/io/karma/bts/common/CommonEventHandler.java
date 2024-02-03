@@ -22,7 +22,7 @@ public final class CommonEventHandler {
             EntityPlayerMP entityPlayerMP = (EntityPlayerMP) event.player;
             MinecraftServer server = entityPlayerMP.server;
             muteMessage = true;
-            server.getCommandManager().executeCommand(entityPlayerMP, "ms mana sho");
+            server.getCommandManager().executeCommand(entityPlayerMP, "ms mana show");
             muteMessage = false;
         }
     }

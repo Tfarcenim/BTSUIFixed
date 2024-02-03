@@ -46,7 +46,8 @@ public final class ClientEventHandler {
                 ITextComponent manaText = siblings.get(0);
                 if (manaText instanceof TextComponentString) {
                     TextComponentString manaTextCompoentString = (TextComponentString) manaText;
-                    if (manaTextCompoentString.getText().equals("Mana:"))  {
+                    String rawS = manaTextCompoentString.getText();
+                    if (rawS.startsWith("Mana:") || rawS.startsWith("Stamina:"))  {
                         TextComponentString manaNumbers = (TextComponentString)siblings.get(size - 1);
                         String raw = manaNumbers.getText();
 
